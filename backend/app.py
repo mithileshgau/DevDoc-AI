@@ -5,8 +5,8 @@ import os
 from google import genai
 
 app = Flask(__name__)
-CORS(app, origins=["https://devdoc-ai-frontend.onrender.com"])  # Allow requests from your React frontend
-
+# Explicitly allow your frontend domain
+CORS(app, resources={r"/*": {"origins": "https://devdoc-ai-frontend.onrender.com"}})
 
 api_key = os.getenv("API_KEY")
 # Initialize the Gemini API client
