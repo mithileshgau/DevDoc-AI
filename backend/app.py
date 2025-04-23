@@ -5,7 +5,7 @@ import os
 from google import genai
 
 app = Flask(__name__)
-CORS(app, origins="https://devdoc-ai-frontend.onrender.com")  # Allow requests from your React frontend
+CORS(app, origins=["https://devdoc-ai-frontend.onrender.com"])  # Allow requests from your React frontend
 
 
 api_key = os.getenv("API_KEY")
