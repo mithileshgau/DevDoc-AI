@@ -1,5 +1,3 @@
-API_KEY = 'AIzaSyDnCQo6Hj9XchH5StMuPvop388EGgNosds'
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import zipfile
