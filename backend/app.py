@@ -34,7 +34,10 @@ def upload_file():
             # # print the file name and content for debugging
             # print(f"File: {file_name}")
             # print(f"Content: {file_content[:100]}...")
-            docs[file_name] = generate_documentation(file_content)
+            docs[file_name] = generate_documentation(file_content)]
+
+        # Delete the ZIP file after processing
+        os.remove(zip_path)
 
         return jsonify(docs)
 
