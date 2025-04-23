@@ -12,6 +12,9 @@ api_key = os.getenv("API_KEY")
 # Initialize the Gemini API client
 client = genai.Client(api_key=api_key)
 
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # 🔥 this line creates the folder if it doesn't exist
+
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
