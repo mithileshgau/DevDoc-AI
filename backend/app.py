@@ -7,8 +7,10 @@ from google import genai
 app = Flask(__name__)
 CORS(app, origins="http://localhost:3000")  # Allow requests from your React frontend
 
+
+api_key = os.getenv("API_KEY")
 # Initialize the Gemini API client
-client = genai.Client(api_key=API_KEY)
+client = genai.Client(api_key=api_key)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
