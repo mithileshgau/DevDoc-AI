@@ -3,6 +3,7 @@ from flask_cors import CORS
 import zipfile
 import os
 from google import genai
+import concurrent.futures  # Import for parallel processing
 
 app = Flask(__name__)
 # Explicitly allow your frontend domain
@@ -31,13 +32,19 @@ def upload_file():
         extracted_files = extract_zip(zip_path)
 
         print(f"Extracted files: {extracted_files.keys()}")  # Debugging line
-        # Generate documentation for each file
+        # Generate documentation for each file in parallel
         docs = {}
-        for file_name, file_content in extracted_files.items():
-            # # print the file name and content for debugging
-            # print(f"File: {file_name}")
-            # print(f"Content: {file_content[:100]}...")
-            docs[file_name] = generate_documentation(file_content)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future_to_file = {
+                executor.submit(generate_documentation, file_content): file_name
+                for file_name, file_content in extracted_files.items()
+            }
+            for future in concurrent.futures.as_completed(future_to_file):
+                file_name = future_to_file[future]
+                try:
+                    docs[file_name] = future.result()
+                except Exception as e:
+                    print(f"Error processing file {file_name}: {e}")
 
         # Delete the ZIP file after processing
         os.remove(zip_path)
