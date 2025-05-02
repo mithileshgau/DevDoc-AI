@@ -1,0 +1,113 @@
+const styles = {
+    container: {
+      maxWidth: "800px",
+      margin: "0 auto",
+      padding: "50px 25px",
+      fontFamily: "Segoe UI, sans-serif",
+      backgroundColor: "#ffffff",
+      borderRadius: "16px",
+      boxShadow: "0 8px 20px rgba(0, 0, 0, 0.1)",
+      backgroundImage: "linear-gradient(to bottom right, #f0f4f8, #e2ebf0)",
+      position: "relative",
+      zIndex: 1,
+    },
+    pageBackground: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundImage: "linear-gradient(to bottom, #e2ebf0, #cbd5e0)",
+      zIndex: 0,
+    },
+    logo: {
+      display: "block",
+      margin: "0 auto 30px",
+      width: "200px",
+      height: "auto",
+    },
+    header: {
+      textAlign: "center",
+      color: "#1a202c",
+      fontSize: "32px",
+      marginBottom: "30px",
+    },
+    intro: {
+      textAlign: "center",
+      color: "#4a5568",
+      fontSize: "18px",
+      marginBottom: "20px",
+    },
+    input: {
+      display: "block",
+      margin: "20px auto",
+      padding: "12px",
+      borderRadius: "6px",
+      border: "1px solid #cbd5e0",
+      backgroundColor: "#edf2f7",
+      width: "100%",
+      maxWidth: "400px",
+    },
+    button: {
+      display: "block",
+      margin: "15px auto",
+      padding: "12px 24px",
+      backgroundColor: "#3182ce",
+      color: "#fff",
+      border: "none",
+      borderRadius: "6px",
+      cursor: "pointer",
+      transition: "background-color 0.3s ease",
+    },
+    accordion: {
+      marginTop: "30px",
+    },
+    accordionItem: {
+      marginBottom: "12px",
+      border: "1px solid #cbd5e0",
+      borderRadius: "6px",
+      overflow: "hidden",
+      backgroundColor: "#f7fafc",
+    },
+    accordionHeader: {
+      padding: "12px 16px",
+      backgroundColor: "#e2e8f0",
+      cursor: "pointer",
+      fontWeight: "bold",
+      transition: "background-color 0.2s ease",
+    },
+    markdownContainer: {
+        boxSizing: "border-box",
+        minWidth: "200px",
+        maxWidth: "980px",
+        margin: "0 auto",
+      },
+      
+      // Update accordionContent to not conflict with GitHub styles
+      accordionContent: {
+        padding: "0",
+        backgroundColor: "#ffffff",
+        overflow: "auto",
+      },
+    // accordionContent: {
+    //   padding: "14px 16px",
+    //   backgroundColor: "#ffffff",
+    //   whiteSpace: "pre-wrap",
+    //   fontFamily: "monospace",
+    //   fontSize: "14px",
+    //   color: "#2d3748",
+    // },
+    // markdownContent: {
+    //   fontFamily: "Segoe UI, sans-serif",
+    //   fontSize: "16px",
+    //   lineHeight: "1.6",
+    //   color: "#2d3748",
+    //   backgroundColor: "#f7fafc",
+    //   padding: "10px",
+    //   borderRadius: "6px",
+    //   border: "1px solid #cbd5e0",
+    // },
+  };
+  
+  export default styles;
+  

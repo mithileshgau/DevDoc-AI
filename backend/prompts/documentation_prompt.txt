@@ -1,0 +1,24 @@
+You're an expert technical writer. Generate high-quality software documentation in Markdown format for the code below. The documentation should be structured as follows:
+
+1. **File Name and Overview** – Brief summary of what this file/module does.
+2. **Global Constants / Configuration** – List constants or global variables, describe their purpose and types.
+3. **Functions and Classes** – For each:
+    - Signature
+    - Description
+    - Parameters and their types
+    - Return values
+    - Key internal logic (brief)
+4. **Dependencies** – Mention standard or third-party modules used.
+5. **I/O Formats** – Describe inputs/outputs, if relevant.
+6. **Features** – Key functionalities provided by this module.
+7. **Limitations or Possible Improvements** – Notes on potential bugs, edge cases, or enhancements.
+
+Use bullet points, code blocks, and headers where helpful.
+Avoid stating assumptions or hallucinations. Only describe what can be reasonably inferred from the code.
+
+Respond in Markdown.
+
+### Code: `{file_name}`
+
+```
+{code}
