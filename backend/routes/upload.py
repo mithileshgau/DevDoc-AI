@@ -1,35 +1,26 @@
-from flask import Blueprint, request, jsonify, current_app
-import os
-from services.extractor import extract_zip
+from flask import Blueprint, request, jsonify
 from services.documentation import generate_documentation
-import concurrent.futures
+import os
 
 upload_bp = Blueprint('upload', __name__)
 
 @upload_bp.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({"error": "No file part"}), 400
+def upload_files():
+    if 'files' not in request.files:
+        return jsonify({"error": "No files part"}), 400
 
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
+    files = request.files.getlist('files')  # Get the list of uploaded files
+    if not files:
+        return jsonify({"error": "No files selected"}), 400
 
-    if file and file.filename.endswith('.zip'):
-        zip_path = os.path.join(current_app.config['UPLOAD_FOLDER'], file.filename)
-        os.makedirs(current_app.config['UPLOAD_FOLDER'], exist_ok=True)
-        file.save(zip_path)
+    docs = {}
+    for file in files:
+        if file.filename == '':
+            continue
+        try:
+            content = file.read().decode('utf-8')  # Read and decode the file content
+            docs[file.filename] = generate_documentation(content, file.filename)
+        except Exception as e:
+            docs[file.filename] = f"Error processing file: {str(e)}"
 
-        extracted_files = extract_zip(zip_path)
-
-        docs = {}
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            future_to_file = {
-                executor.submit(generate_documentation, content, fname): fname
-                for fname, content in extracted_files.items()
-            }
-            for future in concurrent.futures.as_completed(future_to_file):
-                docs[future_to_file[future]] = future.result()
-
-        os.remove(zip_path)
-        return jsonify(docs)
+    return jsonify(docs)

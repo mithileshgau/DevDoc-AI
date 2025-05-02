@@ -6,22 +6,22 @@ import useBackendUrl from "./hooks/useBackendUrl";
 import styles from "./styles/styles";
 
 function App() {
-  const [zipFile, setZipFile] = useState(null);
+  const [files, setFiles] = useState([]);
   const [documentation, setDocumentation] = useState({});
   const [loading, setLoading] = useState(false);
 
   const backendUrl = useBackendUrl();
 
-  const handleFileChange = (file) => setZipFile(file);
-
   const handleGenerateDocs = async () => {
-    if (!zipFile) {
-      alert("Please upload a ZIP file first.");
+    if (files.length === 0) {
+      alert("Please upload at least one file.");
       return;
     }
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", zipFile);
+    Array.from(files).forEach((file) => {
+      formData.append("files", file); // Append each file to the FormData
+    });
 
     try {
       const response = await fetch(`${backendUrl}/upload`, {
@@ -31,8 +31,9 @@ function App() {
       if (!response.ok) throw new Error("Failed to generate documentation");
       const docs = await response.json();
       console.log("Generated documentation:", docs);
-      
+
       setDocumentation(docs);
+      
     } catch (error) {
       console.error("Error generating documentation:", error);
       alert("Failed to generate documentation");
@@ -47,12 +48,12 @@ function App() {
       <div style={styles.container}>
         <img src={logo} alt="DevDoc AI" style={styles.logo} />
         <p style={styles.intro}>
-          Upload a ZIP file containing your source code, and DevDoc AI will
-          generate detailed documentation for your project. You can preview the
+          Upload multiple source code files, and DevDoc AI will generate
+          detailed documentation for your project. You can preview the
           documentation here and download it as a Markdown (.md) file.
         </p>
         <FileUpload
-          onFileChange={handleFileChange}
+          onFileChange={(files) => setFiles(files)} // Pass the setFiles function
           loading={loading}
           onGenerate={handleGenerateDocs}
         />

@@ -3,11 +3,11 @@ import styles from "../styles/styles";
 
 function FileUpload({ onFileChange, loading, onGenerate }) {
   const handleInputChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.name.endsWith(".zip")) {
-      onFileChange(file);
+    const files = e.target.files; // Get all selected files
+    if (files.length > 0) {
+      onFileChange(files); // Pass the files to the parent component
     } else {
-      alert("Please upload a valid ZIP file.");
+      alert("Please upload at least one valid file.");
     }
   };
 
@@ -15,7 +15,8 @@ function FileUpload({ onFileChange, loading, onGenerate }) {
     <>
       <input
         type="file"
-        accept=".zip"
+        accept=".py,.js,.ts,.java,.sql,.json,.yaml,.yml,.html,.xml" // Accept multiple code file types
+        multiple // Allow multiple file selection
         onChange={handleInputChange}
         style={styles.input}
       />

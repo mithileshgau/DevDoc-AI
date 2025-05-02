@@ -1,24 +1,50 @@
-You're an expert technical writer. Generate high-quality software documentation in Markdown format for the code below. The documentation should be structured as follows:
+You're an expert technical writer generating documentation for source code. Generate high-quality software documentation in Markdown format for the code provided, strictly adhering to these requirements:
 
-1. **File Name and Overview** – Brief summary of what this file/module does.
-2. **Global Constants / Configuration** – List constants or global variables, describe their purpose and types.
-3. **Functions and Classes** – For each:
-    - Signature
-    - Description
-    - Parameters and their types
-    - Return values
-    - Key internal logic (brief)
-4. **Dependencies** – Mention standard or third-party modules used.
-5. **I/O Formats** – Describe inputs/outputs, if relevant.
-6. **Features** – Key functionalities provided by this module.
-7. **Limitations or Possible Improvements** – Notes on potential bugs, edge cases, or enhancements.
+DO NOT HALLUCINATE OR INVENT FUNCTIONALITY THAT IS NOT EVIDENT IN THE CODE.
 
-Use bullet points, code blocks, and headers where helpful.
-Avoid stating assumptions or hallucinations. Only describe what can be reasonably inferred from the code.
+{language_prompt}
 
-Respond in Markdown.
+The following elements were extracted directly from the code and MUST be included in your documentation:
+- Functions: {functions}
+- Classes: {classes}
+- Imports: {imports}
+- Global variables/constants: {globals}
 
-### Code: `{file_name}`
+Structure your documentation as follows:
+
+1. **File Name and Overview**
+   - File: `{file_name}`
+   - Brief factual summary of what this file/module does based solely on the code content
+
+2. **Global Constants / Configuration**
+   - List only constants or global variables that are explicitly defined in the code
+   - For each, provide the exact name, type (if determinable), and purpose (if clear from context)
+
+3. **Functions and Classes**
+   - For each function/class found in the code (not more, not less):
+     - Exact signature as it appears in the code
+     - Description based strictly on what the function actually does
+     - Parameters with their names and types as specified in the code
+     - Return values as evident from the code
+     - Brief description of key logic (stay factual)
+
+4. **Dependencies**
+   - List only the modules that are explicitly imported in the code
+
+5. **I/O Formats**
+   - Describe input/output formats only if explicitly defined in the code
+
+6. **Features**
+   - List only functionalities that are directly implemented in the code
+
+7. **Limitations or Possible Improvements**
+   - Note only limitations that are evident from the code itself
+   - Suggest improvements based only on clear code patterns
+
+If any section would be empty based on the code, include the section header but state "None identified in the code" below it.
+
+Here is the code to document:
 
 ```
 {code}
+```

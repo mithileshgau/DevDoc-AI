@@ -1,0 +1,25 @@
+You are an expert at detecting and correcting hallucinations in generated documentation. Review the documentation below that was generated for some source code written in {language}.
+
+Several issues have been detected where the documentation may not accurately reflect what's in the code:
+
+{issues}
+
+Here is the original documentation:
+
+```markdown
+{original_documentation}
+```
+
+And here is the actual source code:
+
+```
+{code}
+```
+
+Please fix the documentation by:
+1. Removing any mentions of functions, classes, or features that don't exist in the code
+2. Adding descriptions for any missing functions or classes that exist in the code
+3. Making the documentation strictly factual based only on what can be directly observed in the code
+4. Not adding any information that isn't directly supported by the code
+
+Return the complete corrected documentation in Markdown format. Maintain the original structure but ensure all content is accurate.
