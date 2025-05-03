@@ -4,11 +4,6 @@ DO NOT HALLUCINATE OR INVENT FUNCTIONALITY THAT IS NOT EVIDENT IN THE CODE.
 
 {language_prompt}
 
-The following elements were extracted directly from the code and MUST be included in your documentation:
-- Functions: {functions}
-- Classes: {classes}
-- Imports: {imports}
-- Global variables/constants: {globals}
 
 Structure your documentation as follows:
 
