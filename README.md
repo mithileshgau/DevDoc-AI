@@ -23,7 +23,6 @@ The backend is built with Flask and provides APIs for processing uploaded files 
     - **`code_chunking.py`**: Splits large code files into chunks for processing.
     - **`get_language_prompt.py`**: Determines the programming language based on file extensions.
     - **`load_prompt.py`**: Loads prompt templates for AI-based documentation generation.
-    - **`language_patterns.py`**: Defines language-specific patterns for code analysis.
 - **`prompts/documentation_prompt.txt`**: Template for generating structured documentation.
 - **`config.py`**: Configuration file for environment variables and application settings.
 - **`requirements.txt`**: Lists Python dependencies.
@@ -81,5 +80,4 @@ The frontend is a React-based application that provides a user-friendly interfac
 ## Limitations
 
 - Requires an active API key for the Gemini API.
-- Limited to the programming languages defined in `language_patterns.py`.
 - Large files may take longer to process due to chunking and API response times.
